@@ -93,10 +93,10 @@ public class AFD {
         return -1;
     }
 
-    public void imprimirTabla(){
-        System.out.println("E: "+ Arrays.toString(this.alfabeto));
+    public void imprimirTabla() {
+        System.out.println("E: " + Arrays.toString(this.alfabeto));
         for (int i = 0; i < this.estados.length; i++) {
-            System.out.println(estados[i]+": "+Arrays.toString(transiciones[i]));
+            System.out.println((i == this.estadoInicial ? "->" : "") + estados[i] + (binsearch(estadosFinales, i) != -1 ? "*" : "") + ": " + Arrays.toString(transiciones[i]));
         }
     }
 
@@ -155,7 +155,5 @@ public class AFD {
     public void setIndicesEst(HashMap<String, Integer> indicesEst) {
         this.indicesEst = indicesEst;
     }
-    
-    
-    
+
 }

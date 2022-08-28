@@ -1,5 +1,7 @@
 package automatas;
 
+import java.util.Scanner;
+
 /**
  *
  * @author David Leal
@@ -7,7 +9,37 @@ package automatas;
 public class Prueba {
 
     public static void main(String[] args) {
-        ej2();
+        Scanner in = new Scanner(System.in);
+        System.out.println("Letras del alfabeto: ");
+        String[] alfStr = in.nextLine().split(" ");
+        char[] alf = new char[alfStr.length];
+        for (int i = 0; i < alf.length; i++) {
+            alf[i] = alfStr[i].charAt(0);
+        }
+        System.out.println("Estados: ");
+        String[] estados = in.nextLine().split(" ");
+        System.out.println("Estados finales: ");
+        String[] estadosFinales = in.nextLine().split(" ");
+        System.out.print("Estado Inicial: \n");
+        String estIni = in.nextLine();
+        String[][] trans = new String[estados.length][alf.length];
+        for (int i = 0; i < estados.length; i++) {
+            for (int j = 0; j < alf.length; j++) {
+                System.out.println(estados[i] + " x " + alf[j] + " : ");
+                trans[i][j] = in.nextLine();
+            }
+        }
+        AFD afd = new AFD(alf, estados, estadosFinales, estIni, trans);
+        System.out.println("Escribe las palabras: ");
+        String[] palabras = in.nextLine().split(" ");
+        for (String pal : palabras) {
+            System.out.println(pal + (afd.esAceptado(pal) ? " es aceptado." : " no es aceptado."));
+        }
+//        System.out.println("Ejemplo 1:");
+//        ej1();
+//        System.out.println();
+//        System.out.println("Ejemplo 2:");
+//        ej2();
     }
 
     static void ej1() {
