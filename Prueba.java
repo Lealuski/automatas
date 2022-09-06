@@ -4,11 +4,19 @@ import java.util.Scanner;
 
 /**
  *
- * @author David Leal
+ * @author David Leal & Daniel Villa
  */
 public class Prueba {
 
     public static void main(String[] args) {
+        System.out.println("Ejemplo 1:");
+        ej1();
+        System.out.println();
+        System.out.println("Ejemplo 2:");
+        ej2();
+    }
+
+    static void automataGeneral() {
         Scanner in = new Scanner(System.in);
         System.out.println("Letras del alfabeto: ");
         String[] alfStr = in.nextLine().split(" ");
@@ -35,11 +43,6 @@ public class Prueba {
         for (String pal : palabras) {
             System.out.println(pal + (afd.esAceptado(pal) ? " es aceptado." : " no es aceptado."));
         }
-//        System.out.println("Ejemplo 1:");
-//        ej1();
-//        System.out.println();
-//        System.out.println("Ejemplo 2:");
-//        ej2();
     }
 
     static void ej1() {
