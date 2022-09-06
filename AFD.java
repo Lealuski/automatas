@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 /**
  *
- * @author David Leal
+ * @author David Leal & Daniel Villa
  */
 public class AFD {
 
