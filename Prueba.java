@@ -14,6 +14,8 @@ public class Prueba {
     public static void main(String[] args) {
         System.out.println("Ejemplo 1:");
         ej1AFN();
+        System.out.println("Ejemplo 2 (azb) donde z es cualquier cadena de (a,b,c)*:");
+        ej2AFN();
         //afnGeneral();
 //        System.out.println("Ejemplo 1:");
 //        ej1AFD();
@@ -113,6 +115,33 @@ public class Prueba {
         afn.imprimirTabla();
         System.out.println(s1 + " es:" + afn.esAceptado(s1));
     }
+    static void ej2AFN() {
+        char[] alf = {'a', 'b', 'c'};
+        String[] est = {"q0", "q1", "q2"};
+        String[] estFinales = {"q2"};
+        String estIni = "q0";
+        List<String> trans[][] = new List[est.length][alf.length];
+        trans[0][0] = Arrays.asList(new String[]{"q1"});
+        trans[0][1] = null;
+        trans[0][2] = null;
+        trans[1][0] = Arrays.asList(new String[]{"q1"});
+        trans[1][1] = Arrays.asList(new String[]{"q1","q2"});
+        trans[1][2] = Arrays.asList(new String[]{"q1"});
+        trans[2][0] = null;
+        trans[2][1] = null;
+        trans[2][2] = null;
+        AFN afn = new AFN(alf, est, estFinales, estIni, trans);
+        String s1 = "abc";
+        String s2 = "acb";
+        String s3 = "acacacab";
+        String s4 = "acacacabc";
+        afn.imprimirTabla();
+        System.out.println(s1 + " es:" + afn.esAceptado(s1));
+        System.out.println(s2 + " es:" + afn.esAceptado(s2));
+        System.out.println(s3 + " es:" + afn.esAceptado(s3));
+        System.out.println(s4 + " es:" + afn.esAceptado(s4));
+    }
+    
     static void ej1AFD() {
         char[] alf = {'a', 'b', 'c'};
         String[] est = {"q0", "S", "T", "R"};
