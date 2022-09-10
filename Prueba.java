@@ -1,5 +1,8 @@
 package automatas;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -10,13 +13,16 @@ public class Prueba {
 
     public static void main(String[] args) {
         System.out.println("Ejemplo 1:");
-        ej1();
-        System.out.println();
-        System.out.println("Ejemplo 2:");
-        ej2();
+        ej1AFN();
+        //afnGeneral();
+//        System.out.println("Ejemplo 1:");
+//        ej1AFD();
+//        System.out.println();
+//        System.out.println("Ejemplo 2:");
+//        ej2AFD();
     }
 
-    static void automataGeneral() {
+    static void afdGeneral() {
         Scanner in = new Scanner(System.in);
         System.out.println("Letras del alfabeto: ");
         String[] alfStr = in.nextLine().split(" ");
@@ -44,8 +50,70 @@ public class Prueba {
             System.out.println(pal + (afd.esAceptado(pal) ? " es aceptado." : " no es aceptado."));
         }
     }
+    
+    static void afnGeneral() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Letras del alfabeto: ");
+        String[] alfStr = in.nextLine().split(" ");
+        char[] alf = new char[alfStr.length];
+        for (int i = 0; i < alf.length; i++) {
+            alf[i] = alfStr[i].charAt(0);
+        }
+        System.out.println("Estados: ");
+        String[] estados = in.nextLine().split(" ");
+        System.out.println("Estados finales: ");
+        String[] estadosFinales = in.nextLine().split(" ");
+        System.out.print("Estado Inicial: \n");
+        String estIni = in.nextLine();
+        List<String> trans [][] = new ArrayList[estados.length][alf.length];
+        for (int i = 0; i < estados.length; i++) {
+            for (int j = 0; j < alf.length; j++) {
+                System.out.println(estados[i] + " x " + alf[j] + " : ");
+                String tr = in.nextLine();
+                if(tr==null || tr.length()==0){
+                    trans[i][j] = null;
+                } else{
+                    ArrayList<String> listTmp = new ArrayList<String>();
+                    for(String q : tr.split(" ")){
+                        listTmp.add(q);
+                    }
+                    trans[i][j] = listTmp;
+                }
+            }
+        }
+        AFN afn = new AFN(alf, estados, estadosFinales, estIni, trans);
+        afn.imprimirTabla();
+        System.out.println("Escribe las palabras: ");
+        String[] palabras = in.nextLine().split(" ");
+        for (String pal : palabras) {
+            System.out.println(pal + (afn.esAceptado(pal) ? " es aceptado." : " no es aceptado."));
+        }
+    }
 
-    static void ej1() {
+    static void ej1AFN() {
+        char[] alf = {'a', 'b', 'c'};
+        String[] est = {"q0", "q1", "q2", "q3"};
+        String[] estFinales = {"q1","q3"};
+        String estIni = "q0";
+        List<String> trans[][] = new List[est.length][alf.length];
+        trans[0][0] = Arrays.asList(new String[]{"q0","q2"});
+        trans[0][1] = Arrays.asList(new String[]{"q1","q2"});
+        trans[0][2] = Arrays.asList(new String[]{"q0","q3"});
+        trans[1][0] = null;
+        trans[1][1] = Arrays.asList(new String[]{"q1","q3"});
+        trans[1][2] = Arrays.asList(new String[]{"q0"});
+        trans[2][0] = Arrays.asList(new String[]{"q0","q2"});
+        trans[2][1] = Arrays.asList(new String[]{"q3","q2"});
+        trans[2][2] = Arrays.asList(new String[]{"q1"});
+        trans[3][0] = Arrays.asList(new String[]{"q1","q2"});
+        trans[3][1] = Arrays.asList(new String[]{"q2"});
+        trans[3][2] = null;
+        AFN afn = new AFN(alf, est, estFinales, estIni, trans);
+        String s1 = "abc";
+        afn.imprimirTabla();
+        System.out.println(s1 + " es:" + afn.esAceptado(s1));
+    }
+    static void ej1AFD() {
         char[] alf = {'a', 'b', 'c'};
         String[] est = {"q0", "S", "T", "R"};
         String[] estFinales = {"T"};
@@ -79,7 +147,7 @@ public class Prueba {
         System.out.println(s6 + " es:" + afd.esAceptado(s6));
     }
 
-    static void ej2() {
+    static void ej2AFD() {
         char[] alf = {'0', '1'};
         String[] est = {"q0", "q1", "q2"};
         String[] estFinales = {"q2"};
