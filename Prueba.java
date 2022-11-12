@@ -12,16 +12,18 @@ import java.util.Scanner;
 public class Prueba {
 
     public static void main(String[] args) {
-        System.out.println("Ejemplo 1:");
-        ej1AFN();
-        System.out.println("Ejemplo 2 (azb) donde z es cualquier cadena de (a,b,c)*:");
-        ej2AFN();
-        //afnGeneral();
-//        System.out.println("Ejemplo 1:");
+//        System.out.println("Ejemplo 1 AFD:");
 //        ej1AFD();
-//        System.out.println();
-//        System.out.println("Ejemplo 2:");
+//        System.out.println("Ejemplo 2 AFD:");
 //        ej2AFD();
+//        System.out.println("Ejemplo 1 AFN:");
+//        ej1AFN();
+//        System.out.println("Ejemplo 2 AFN:");
+//        ej2AFN();
+//        System.out.println("Ejemplo dinamico AFN:");
+//        afnGeneral();
+//        System.out.println("Ejemplo dinamico AFD:");
+//        afdGeneral();
     }
 
     static void afdGeneral() {
